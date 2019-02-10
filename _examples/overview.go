@@ -1,13 +1,3 @@
-[![Build Status](https://travis-ci.org/makyo/ansigo.svg?branch=master)](https://travis-ci.org/makyo/ansigo)
-[![GoDoc](https://godoc.org/github.com/makyo/gotui?status.svg)](https://godoc.org/github.com/makyo/gotui)
-
-# ansigo
-
-ANSI escape-code library for Golang.
-
-## Usage
-
-```go
 package main
 
 import (
@@ -53,4 +43,3 @@ func main() {
 	// have to keep nesting lookups.
 	fmt.Println(ansi.MaybeApply("bold+brightyellow+rgb(145, 20, 31):bg+blink", "Warning!"))
 }
-```

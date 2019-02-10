@@ -1,3 +1,14 @@
+---
+title: ansigo
+layout: default
+---
+
+ANSI escape-code library for Golang.
+[![GoDoc](https://godoc.org/github.com/makyo/gotui?status.svg)](https://godoc.org/github.com/makyo/gotui)
+
+[![A demonstration](demo.png)](demo.png)
+
+```go
 package main
 
 import (
@@ -34,3 +45,5 @@ func main() {
 	}
 	fmt.Print("\n")
 }
+```
+

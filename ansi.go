@@ -5,6 +5,16 @@ import (
 	"strings"
 )
 
+// Formatter represents something which can apply formatting to a string.
+type Formatter interface {
+	Apply(string) string
+}
+
+// Collection represents something which can be used to find a formatter.
+type Collection interface {
+	Find(string) (Formatter, error)
+}
+
 // CodeNotFound is returned when an ANSI code is requested which does not exist.
 var CodeNotFound error = errors.New("ANSI code not found")
 

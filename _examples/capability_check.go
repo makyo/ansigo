@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 
-	"github.com/makyo/gotui/ansi"
+	"github.com/makyo/ansigo"
 )
 
 func main() {
-	fmt.Print(ansi.CapabilityCheck)
+	fmt.Print(ansigo.CapabilityCheck)
 }

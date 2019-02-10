@@ -9,7 +9,7 @@ var (
 	// InvalidColorSpec is returned when calling Find with an invalid string.
 	InvalidColorSpec = errors.New("invalid color spec")
 
-	hslRegexp *regexp.Regexp = regexp.MustCompile("^(?i)hsl\\((\\d+),\\s*(\\d+)%,\\s*(\\d+)%\\)$")
+	hslRegexp *regexp.Regexp = regexp.MustCompile("^(?i)hsl\\((\\d+\\.?\\d*),\\s*(\\d+\\.?\\d*)%,\\s*(\\d+\\.?\\d*)%\\)$")
 	rgbRegexp                = regexp.MustCompile("^(?i)rgb\\((\\d+),\\s*(\\d+),\\s*(\\d+)\\)$")
 	hexRegexp                = regexp.MustCompile("^#([[:xdigit:]]{2})([[:xdigit:]]{2})([[:xdigit:]]{2})$")
 )
@@ -37,17 +37,17 @@ type rgb struct {
 // decodeHSL returns RGB values on a scale from 0-255 given the hue, saturation,
 // and lightness values. This conversion is not straight-forward, and the author
 // doesn't totally understand it. Unashamed StackExchange-ing resulted in this.
-func decodeHSL(_h, _s, _l int) (uint8, uint8, uint8) {
-	h := float32(_h) / 360.0
-	s := float32(_s) / 100.0
-	l := float32(_l) / 100.0
-	var r, g, b float32
+func decodeHSL(h, s, l float64) (uint8, uint8, uint8) {
+	h = h / 360.0
+	s = s / 100.0
+	l = l / 100.0
+	var r, g, b float64
 	if s == 0 {
 		r = l
 		g = l
 		b = l
 	} else {
-		var q float32
+		var q float64
 		if l < 0.5 {
 			q = l * (1 + s)
 		} else {
@@ -62,7 +62,7 @@ func decodeHSL(_h, _s, _l int) (uint8, uint8, uint8) {
 }
 
 // hue2rgb converts a hue value to an RGB value.
-func hue2rgb(p, q, t float32) float32 {
+func hue2rgb(p, q, t float64) float64 {
 	if t < 0 {
 		t += 1
 	}
