@@ -7,6 +7,8 @@ ANSI escape-code library for Golang.
 
 [![Pretty colors](/docs/demo.png)](/docs/demo.png")
 
+For the colors and attributes, see [the project page](https://ansigo.projects.makyo.io).
+
 ## Usage
 
 ```go
