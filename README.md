@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/makyo/ansigo.svg?branch=master)](https://travis-ci.org/makyo/ansigo)
-[![GoDoc](https://godoc.org/github.com/makyo/gotui?status.svg)](https://godoc.org/github.com/makyo/gotui)
+[![GoDoc](https://godoc.org/github.com/makyo/ansigo?status.svg)](https://godoc.org/github.com/makyo/ansigo)
 
 # ansigo
 

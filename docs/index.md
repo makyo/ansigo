@@ -4,7 +4,7 @@ layout: default
 ---
 
 ANSI escape-code library for Golang.
-[![GoDoc](https://godoc.org/github.com/makyo/gotui?status.svg)](https://godoc.org/github.com/makyo/gotui)
+[![GoDoc](https://godoc.org/github.com/makyo/ansigo?status.svg)](https://godoc.org/github.com/makyo/ansigo)
 
 [![A demonstration](demo.png)](demo.png)
 
