@@ -12,3 +12,6 @@
 *.out
 
 *.sw[op]
+.bundle
+.sass-cache
+_site

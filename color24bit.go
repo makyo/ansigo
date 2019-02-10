@@ -58,10 +58,10 @@ func (c colors24bit) Find(what string) (Color, error) {
 		}
 		return color24bit{R: uint8(r), G: uint8(g), B: uint8(b)}, nil
 	} else if matches := hslRegexp.FindAllStringSubmatch(what, -1); len(matches) == 1 && len(matches[0]) == 4 {
-		var h, s, l int
-		h, _ = strconv.Atoi(matches[0][1])
-		s, _ = strconv.Atoi(matches[0][2])
-		l, _ = strconv.Atoi(matches[0][3])
+		var h, s, l float64
+		h, _ = strconv.ParseFloat(matches[0][1], 32)
+		s, _ = strconv.ParseFloat(matches[0][2], 32)
+		l, _ = strconv.ParseFloat(matches[0][3], 32)
 		if h > 360 || s > 100 || l > 100 {
 			return nil, InvalidColorSpec
 		}
