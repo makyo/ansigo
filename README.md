@@ -5,6 +5,8 @@
 
 ANSI escape-code library for Golang.
 
+[![Pretty colors](/docs/demo.png)](/docs/demo.png")
+
 ## Usage
 
 ```go
