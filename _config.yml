@@ -14,7 +14,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: ansigo
-email: makyo+tv2@drab-makyo.com.com
+email: makyo+ansigo@drab-makyo.com.com
 description: >- # this means to ignore newlines until "baseurl:"
   ansigo is a Golang package for controlling ANSI escape codes in terminal apps.
 baseurl: "" # the subpath of your site, e.g. /blog
