@@ -22,6 +22,7 @@ type Color interface {
 	FG(string) string
 	BG(string) string
 	Apply(string, string) string
+	ApplyWithReset(string, string) string
 }
 
 const (
