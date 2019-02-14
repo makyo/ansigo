@@ -65,7 +65,13 @@ func ANSIAtIndex(s string, index int) []string {
 	}
 	for _, match := range codeRE.FindAllStringSubmatch(s[:index], -1) {
 		core, _ := strconv.Atoi(match[1])
-		if core == 39 {
+		if core == 0 {
+			activeForeground = ""
+			activeBackground = ""
+			for attr, _ := range activeAttributes {
+				activeAttributes[attr] = false
+			}
+		} else if core == 39 {
 			activeForeground = ""
 		} else if core == 49 {
 			activeBackground = ""
