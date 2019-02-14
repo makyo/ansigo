@@ -9,6 +9,12 @@ import (
 
 var codeRE = regexp.MustCompile("\x1b\\[(\\d+)(;\\d+)*m")
 
+// ANSIAtIndex accepts a string and an index within that string and returns
+// a list of ANSI codes which are currently active at that string. That is, if
+// a character at that index is green and bold with a blue background, it will
+// return the color codes for green foreground, blue background, and bold,
+// regardless of any additional ANSIfication that takes place before or after
+// that index.
 func ANSIAtIndex(s string, index int) []string {
 	if index < 5 || index >= len(s) {
 		return []string{}
