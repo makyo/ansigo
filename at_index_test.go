@@ -146,6 +146,10 @@ func TestANSIAtIndex(t *testing.T) {
 			So(ansi.ANSIAtIndex(ansi.MaybeApply("red", ansi.MaybeApply("overlined", "Rose Tyler")+" and")+" the Doctor", 35),
 				ShouldResemble,
 				[]string{})
+
+			Convey("Including resets", func() {
+				So(ansi.ANSIAtIndex("\x1b[1m\x1b[31mRose Tyler\x1b[0m and the doctor", 25), ShouldResemble, []string{})
+			})
 		})
 	})
 }
