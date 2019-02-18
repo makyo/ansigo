@@ -34,7 +34,7 @@ func (c color24bit) BG(s string) string {
 // BGWithReset turns the background for the provided string the specified color
 // by surrounding it with the start and reset codes.
 func (c color24bit) BGWithReset(s string) string {
-	return fmt.Sprintf("%s%s%s", c.BGStart(), s, BGEnd)
+	return fmt.Sprintf("%s%s%s", c.BGStart(), s, Reset)
 }
 
 // FGWithReset turns the text for the provided string the specified color by

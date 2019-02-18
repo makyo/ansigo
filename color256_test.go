@@ -68,6 +68,11 @@ func TestColor256(t *testing.T) {
 				So(color.Apply("rose", "fg"), ShouldEqual, "\x1b[38;5;0mrose\x1b[39m")
 				So(color.Apply("rose", "bg"), ShouldEqual, "\x1b[48;5;0mrose\x1b[49m")
 			})
+
+			Convey("It should be able to apply with a reset", func() {
+				So(color.ApplyWithReset("rose", "fg"), ShouldEqual, "\x1b[38;5;0mrose\x1b[0m")
+				So(color.ApplyWithReset("rose", "bg"), ShouldEqual, "\x1b[48;5;0mrose\x1b[0m")
+			})
 		})
 	})
 }

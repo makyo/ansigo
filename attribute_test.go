@@ -22,5 +22,9 @@ func TestAttribute(t *testing.T) {
 		Convey("It should be able to apply to a string", func() {
 			So(ansi.Bold.Apply("rose"), ShouldEqual, "\x1b[1mrose\x1b[22m")
 		})
+
+		Convey("It should be able to apply with a reset", func() {
+			So(ansi.Bold.ApplyWithReset("rose"), ShouldEqual, "\x1b[1mrose\x1b[0m")
+		})
 	})
 }

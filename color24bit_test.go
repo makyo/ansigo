@@ -58,6 +58,11 @@ func TestColor24bit(t *testing.T) {
 				So(color.Apply("rose", "bg"), ShouldEqual, "\x1b[48;2;0;0;0mrose\x1b[49m")
 				So(color.Apply("rose", "fg"), ShouldEqual, "\x1b[38;2;0;0;0mrose\x1b[39m")
 			})
+
+			Convey("It should be able to apply with a reset", func() {
+				So(color.ApplyWithReset("rose", "bg"), ShouldEqual, "\x1b[48;2;0;0;0mrose\x1b[0m")
+				So(color.ApplyWithReset("rose", "fg"), ShouldEqual, "\x1b[38;2;0;0;0mrose\x1b[0m")
+			})
 		})
 	})
 }

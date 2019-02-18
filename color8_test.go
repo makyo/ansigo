@@ -44,6 +44,11 @@ func TestColor8(t *testing.T) {
 				So(color.Apply("rose", "bg"), ShouldEqual, "\x1b[40mrose\x1b[49m")
 				So(color.Apply("rose", "fg"), ShouldEqual, "\x1b[30mrose\x1b[39m")
 			})
+
+			Convey("It should be able to apply with a reset", func() {
+				So(color.ApplyWithReset("rose", "bg"), ShouldEqual, "\x1b[40mrose\x1b[0m")
+				So(color.ApplyWithReset("rose", "fg"), ShouldEqual, "\x1b[30mrose\x1b[0m")
+			})
 		})
 	})
 }
