@@ -20,6 +20,7 @@ type Attribute interface {
 	Start() string
 	End() string
 	Apply(string) string
+	ApplyWithReset(string) string
 }
 
 // Reset is the ANSI code to reset all attributes and colors of a string.
@@ -39,6 +40,12 @@ func (a attribute) End() string {
 // the start and end codes.
 func (a attribute) Apply(s string) string {
 	return fmt.Sprintf("%s%s%s", a.Start(), s, a.End())
+}
+
+// ApplyWithReset turns on the attribute for the given string by surrounding it
+// with the start and reset codes.
+func (a attribute) ApplyWithReset(s string) string {
+	return fmt.Sprintf("%s%s%s", a.Start(), s, Reset)
 }
 
 var (

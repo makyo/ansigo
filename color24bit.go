@@ -31,6 +31,18 @@ func (c color24bit) BG(s string) string {
 	return fmt.Sprintf("%s%s%s", c.BGStart(), s, BGEnd)
 }
 
+// BGWithReset turns the background for the provided string the specified color
+// by surrounding it with the start and reset codes.
+func (c color24bit) BGWithReset(s string) string {
+	return fmt.Sprintf("%s%s%s", c.BGStart(), s, Reset)
+}
+
+// FGWithReset turns the text for the provided string the specified color by
+// surrounding it with the start and reset codes.
+func (c color24bit) FGWithReset(s string) string {
+	return fmt.Sprintf("%s%s%s", c.FGStart(), s, Reset)
+}
+
 // Apply applies the color to the string with the given modifier ("bg" for
 // background, "fg" for foreground (or default)).
 func (c color24bit) Apply(s, mod string) string {
@@ -38,6 +50,16 @@ func (c color24bit) Apply(s, mod string) string {
 		return c.BG(s)
 	}
 	return c.FG(s)
+}
+
+// ApplyWithReset applies the color to the string with the given modifier ("bg"
+// for background, "fg" for foreground (or default)). It terminates with a
+// Reset instead of a color-off.
+func (c color24bit) ApplyWithReset(s, mod string) string {
+	if mod == "bg" {
+		return c.BGWithReset(s)
+	}
+	return c.FGWithReset(s)
 }
 
 type colors24bit struct{}
