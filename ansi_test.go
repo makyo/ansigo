@@ -14,7 +14,10 @@ func TestANSI(t *testing.T) {
 		Convey("When applying one ANSI code", func() {
 
 			Convey("It can succeed", func() {
-				s, err := ansi.ApplyOne("bold", "rose")
+				s, err := ansi.ApplyOne("allcaps", "rose")
+				So(err, ShouldBeNil)
+				So(s, ShouldEqual, "ROSE")
+				s, err = ansi.ApplyOne("bold", "rose")
 				So(err, ShouldBeNil)
 				So(s, ShouldEqual, "\x1b[1mrose\x1b[22m")
 				s, err = ansi.ApplyOne("black", "rose")
@@ -50,9 +53,9 @@ func TestANSI(t *testing.T) {
 		Convey("When applying multiple ANSI codes", func() {
 
 			Convey("It can succeed", func() {
-				s, err := ansi.Apply("bold+black", "rose")
+				s, err := ansi.Apply("allcaps+bold+black", "rose")
 				So(err, ShouldBeNil)
-				So(s, ShouldEqual, "\x1b[30m\x1b[1mrose\x1b[22m\x1b[39m")
+				So(s, ShouldEqual, "\x1b[30m\x1b[1mROSE\x1b[22m\x1b[39m")
 			})
 
 			Convey("But it can fail", func() {
@@ -64,6 +67,23 @@ func TestANSI(t *testing.T) {
 			Convey("Or one can just blithely go ahead anyway!", func() {
 				So(ansi.MaybeApply("bald", "rose"), ShouldEqual, "rose")
 			})
+		})
+
+		Convey("One can end applications with reset characters instead of specific ending codes", func() {
+			s, err := ansi.ApplyWithReset("allcaps", "rose")
+			So(err, ShouldBeNil)
+			So(s, ShouldEqual, "ROSE")
+			s, err = ansi.ApplyWithReset("bald", "rose")
+			So(err, ShouldEqual, ansi.CodeNotFound)
+			So(s, ShouldEqual, "rose")
+			s = ansi.MaybeApplyWithReset("bold", "rose")
+			So(s, ShouldEqual, "\x1b[1mrose\x1b[0m")
+			s = ansi.MaybeApplyWithReset("black", "rose")
+			So(s, ShouldEqual, "\x1b[30mrose\x1b[0m")
+			s = ansi.MaybeApplyWithReset("DeepSkyBlue4", "rose")
+			So(s, ShouldEqual, "\x1b[38;5;23mrose\x1b[0m")
+			s = ansi.MaybeApplyWithReset("rgb(255, 128, 1)", "rose")
+			So(s, ShouldEqual, "\x1b[38;2;255;128;1mrose\x1b[0m")
 		})
 	})
 }

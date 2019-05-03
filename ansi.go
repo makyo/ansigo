@@ -20,6 +20,9 @@ type Collection interface {
 var CodeNotFound error = errors.New("ANSI code not found")
 
 func applyOne(spec, s string, withReset bool) (string, error) {
+	if other, err := Others.Find(spec); err == nil {
+		return other.Apply(s), nil
+	}
 	if attr, err := Attributes.Find(spec); err == nil {
 		if withReset {
 			return attr.ApplyWithReset(s), nil
